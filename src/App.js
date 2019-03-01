@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import CharacterContainer from './CharacterContainer.js'
-import SearchBar from './SearchBar.js'
+// import SearchBar from './SearchBar.js'
 
 class App extends Component {
   constructor() {
@@ -22,13 +22,11 @@ class App extends Component {
       currentCharacters = this.state.characters;
       filteredCharacters = currentCharacters.filter(character => {
         const lcSearch = new RegExp(e.target.value.toLowerCase(),'i')
-        console.log(character.name.match(lcSearch));
         return character.name.match(lcSearch);
       })
     }
     
     this.setState({
-      search: e.target.value,
       filtered: filteredCharacters,
     })
 
@@ -63,7 +61,6 @@ class App extends Component {
           name="search" 
           placeholder='Search' 
           onChange={this.handleChange}
-          value={this.state.search}
           />
       <CharacterContainer 
         characters={this.state.filtered}  
