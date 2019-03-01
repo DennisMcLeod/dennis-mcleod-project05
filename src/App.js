@@ -12,6 +12,27 @@ class App extends Component {
       filtered:[],
     }
   }
+  handleChange = e => {
+    let currentCharacters = []
+    let filteredCharacters = []
+
+    if (e.target.value === '') {
+      filteredCharacters = this.state.characters
+    } else {
+      currentCharacters = this.state.characters;
+      filteredCharacters = currentCharacters.filter(character => {
+        const lcSearch = new RegExp(e.target.value.toLowerCase(),'i')
+        console.log(character.name.match(lcSearch));
+        return character.name.match(lcSearch);
+      })
+    }
+    
+    this.setState({
+      search: e.target.value,
+      filtered: filteredCharacters,
+    })
+
+  }
 
   // GET ALL CHARACTER DATA FROM API CALL
   componentDidMount() {
@@ -29,16 +50,23 @@ class App extends Component {
       // set state on the app to hold an arry with all of the characters
       this.setState({
         characters: filteredResponse,
-        filtered: filteredResponse
+        filtered: filteredResponse,
+        search: '',
       })
     })
   }
   render() {
     return (
       <div className="App">
-      <SearchBar />
+        <input 
+          type="text" 
+          name="search" 
+          placeholder='Search' 
+          onChange={this.handleChange}
+          value={this.state.search}
+          />
       <CharacterContainer 
-          characters={this.state.filtered}  
+        characters={this.state.filtered}  
       />
       </div>
     );
