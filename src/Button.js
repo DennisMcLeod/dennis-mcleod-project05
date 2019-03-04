@@ -2,7 +2,7 @@ import React from 'react';
 
 const Button = props => {
     return(
-        <button>Are they Alive?</button>
+        <button onClick={() => {props.handleClick(props.isAlive)}}>Are they Alive?</button>
     )
 }
 

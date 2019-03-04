@@ -2,7 +2,10 @@ import React from 'react'
 
 const SearchBar = props => {
     return(
-        <input type="text" name="search" placeholder='Search' onChange={() => { props.handleChange() }}/>
+        <div className="search-container">
+            <input type="text" name="search" placeholder='Search' onChange={() => { props.handleChange() }}/>
+        
+        </div>
     )
 }
 
